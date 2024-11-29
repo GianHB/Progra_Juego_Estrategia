@@ -18,20 +18,14 @@ public class Bala : MonoBehaviourPun
     {
         rb = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
-        if (photonView.IsMine)
-        {
-            meshRenderer.material = BalaJugador;
-        }  
-        else
-        {
-            meshRenderer.material = BalaOponente;
-        }
     }
 
     public void SetUp(Vector3 direction, int ownerId)
     {
         this.direction = direction;
         this.ownerId = ownerId;
+
+        photonView.RPC("SetMaterial", RpcTarget.AllBuffered, photonView.IsMine);
     }
 
     void Update()
@@ -61,5 +55,17 @@ public class Bala : MonoBehaviourPun
             }
         }
 
+    }
+    [PunRPC]
+    public void SetMaterial(bool Jugador)
+    {
+        if (Jugador)
+        {
+            meshRenderer.material = BalaJugador;
+        }
+        else
+        {
+            meshRenderer.material = BalaOponente;
+        }
     }
 }
