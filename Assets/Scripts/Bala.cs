@@ -25,7 +25,7 @@ public class Bala : MonoBehaviourPun
         this.direction = direction;
         this.ownerId = ownerId;
 
-        photonView.RPC("SetMaterial", RpcTarget.All, photonView.IsMine);
+        photonView.RPC("SetMaterial", RpcTarget.AllBuffered, photonView.IsMine);
     }
 
     void Update()
@@ -57,9 +57,9 @@ public class Bala : MonoBehaviourPun
 
     }
     [PunRPC]
-    public void SetMaterial()
+    public void SetMaterial(bool Jugador)
     {
-        if (photonView.IsMine)
+        if (Jugador)
         {
             meshRenderer.material = BalaJugador;
         }
