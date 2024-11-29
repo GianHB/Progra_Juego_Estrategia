@@ -18,10 +18,10 @@ public class Controlador : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        Posicion posicion = BuscarPosition();
 
         if (PhotonNetwork.IsConnectedAndReady && Player.LocalInstance == null)
         {
+        Posicion posicion = BuscarPosition();
 
             if (posicion != null)
             {
@@ -32,10 +32,10 @@ public class Controlador : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
+            Posicion posicion = BuscarPosition();
 
         if (Player.LocalInstance == null)
         {
-            Posicion posicion = BuscarPosition();
 
             if (posicion != null)
             {
