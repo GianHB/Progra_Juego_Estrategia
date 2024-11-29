@@ -97,7 +97,7 @@ public class Player : MonoBehaviourPun
             transform.position = new Vector3(0f, 1f, 0f);
         }
 
-        //BarradeVida.fillAmount = (float)Vida / VidaMax;
+        BarradeVida.fillAmount = (float)Vida / VidaMax;
     }
 
     public int ObtenerID()

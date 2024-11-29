@@ -264,7 +264,7 @@ MonoBehaviour:
   Velocidad: 8
   BalaPrefab: {fileID: 3724889701875030858, guid: b2ccf2a6be20cc3439d2c5b36905e75f, type: 3}
   PuntodeDisparo: {fileID: 7334812624836900499}
-  VidaMax: 0
+  VidaMax: 50
   Vida: 0
   BarradeVida: {fileID: 973916739196196006}
 --- !u!114 &-142073128118757612
