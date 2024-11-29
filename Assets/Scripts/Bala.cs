@@ -29,4 +29,9 @@ public class Bala : MonoBehaviourPun
         }
         rb.velocity = direction.normalized * speed;
     }
+
+    public void DestruirBala()
+    {
+        PhotonNetwork.Destroy(gameObject);
+    }
 }
