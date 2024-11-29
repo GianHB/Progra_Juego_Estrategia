@@ -20,28 +20,30 @@ public class Controlador : MonoBehaviourPunCallbacks
     {
         Posicion posicion = BuscarPosicion();
 
+        OcuparPosicion(posicion);
+
         if (PhotonNetwork.IsConnectedAndReady && Player.LocalInstance == null)
         {
 
             if (posicion != null)
             {
                 PhotonNetwork.Instantiate(prefabJugador.name, posicion.posicion.position, Quaternion.identity);
-                OcuparPosicion(posicion);
             }
 
         }
     }
     public override void OnJoinedRoom()
     {
-        Posicion posicion = BuscarPosicion();
 
         if (Player.LocalInstance == null)
         {
+        Posicion posicion = BuscarPosicion();
+
+        OcuparPosicion(posicion);
 
             if (posicion != null)
             {
                 PhotonNetwork.Instantiate(prefabJugador.name, posicion.posicion.position, Quaternion.identity);
-                OcuparPosicion(posicion);
             }
         }
     }
@@ -61,6 +63,7 @@ public class Controlador : MonoBehaviourPunCallbacks
 
     private void OcuparPosicion(Posicion posicion)
     {
+        if (posicion == null) return;
         posicion.ocupada = true;
     }
 }
