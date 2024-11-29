@@ -21,16 +21,26 @@ public class Player : MonoBehaviourPun
     [SerializeField] private int VidaMax;
     [SerializeField] private int Vida;
     [SerializeField] private Image BarradeVida;
+    [SerializeField] private Material Jugador;
+    [SerializeField] private Material Oponente;
+
+    private MeshRenderer meshRenderer;
 
 
     private void Awake()
     {
+        meshRenderer = GetComponent<MeshRenderer>();
         if (photonView.IsMine)
         {
             playerNameText.text = Gamedata.nombreJugador;
             photonView.RPC("SetName", RpcTarget.AllBuffered, Gamedata.nombreJugador);
             photonView.RPC("SetHealth", RpcTarget.AllBuffered, VidaMax);
             localInstance = gameObject;
+            meshRenderer.material = Jugador;
+        }
+        else
+        {
+            meshRenderer.material = Oponente;
         }
         DontDestroyOnLoad(gameObject);
         rb = GetComponent<Rigidbody>();

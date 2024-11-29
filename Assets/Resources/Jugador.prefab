@@ -267,6 +267,8 @@ MonoBehaviour:
   VidaMax: 10
   Vida: 0
   BarradeVida: {fileID: 973916739196196006}
+  Jugador: {fileID: 2100000, guid: 8bf370d51723a5a42b62e11f8ab6ce69, type: 2}
+  Oponente: {fileID: 2100000, guid: f7412fe8091a48e468211147dc9d1494, type: 2}
 --- !u!114 &-142073128118757612
 MonoBehaviour:
   m_ObjectHideFlags: 0
