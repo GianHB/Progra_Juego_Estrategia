@@ -105,6 +105,7 @@ public class Player : MonoBehaviourPun
         return photonView.ViewID;
     }
 
+    [PunRPC]
     private void SetHealth(int vida )
     {
         Vida = vida;
