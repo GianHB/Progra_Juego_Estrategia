@@ -57,9 +57,9 @@ public class Bala : MonoBehaviourPun
 
     }
     [PunRPC]
-    public void SetMaterial(bool Jugador)
+    public void SetMaterial()
     {
-        if (Jugador)
+        if (photonView.IsMine)
         {
             meshRenderer.material = BalaJugador;
         }
