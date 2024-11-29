@@ -154,8 +154,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabJugador: {fileID: 6195891753458937920, guid: 446d6d4bd6d47d54297b544113a0656b, type: 3}
   posiciones:
-  - {fileID: 919658890}
-  - {fileID: 1529253911}
+  - posicion: {fileID: 919658890}
+    ocupada: 0
+  - posicion: {fileID: 1529253911}
+    ocupada: 0
 --- !u!4 &612885229
 Transform:
   m_ObjectHideFlags: 0
