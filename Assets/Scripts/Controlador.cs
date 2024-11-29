@@ -18,21 +18,22 @@ public class Controlador : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        Posicion posicion = BuscarPosicion();
 
         if (PhotonNetwork.IsConnectedAndReady && Player.LocalInstance == null)
         {
-        Posicion posicion = BuscarPosition();
 
             if (posicion != null)
             {
                 PhotonNetwork.Instantiate(prefabJugador.name, posicion.posicion.position, Quaternion.identity);
+                OcuparPosicion(posicion);
             }
 
         }
     }
     public override void OnJoinedRoom()
     {
-            Posicion posicion = BuscarPosition();
+        Posicion posicion = BuscarPosicion();
 
         if (Player.LocalInstance == null)
         {
@@ -40,20 +41,26 @@ public class Controlador : MonoBehaviourPunCallbacks
             if (posicion != null)
             {
                 PhotonNetwork.Instantiate(prefabJugador.name, posicion.posicion.position, Quaternion.identity);
+                OcuparPosicion(posicion);
             }
         }
     }
 
-    private Posicion BuscarPosition()
+    private Posicion BuscarPosicion()
     {
         foreach (Posicion posicion in posiciones)
         {
-            if (posicion.ocupada) continue;
-
-            posicion.ocupada = true;
-            return posicion;
+            if (!posicion.ocupada)
+            {
+                return posicion;
+            }
         }
 
         return null;
+    }
+
+    private void OcuparPosicion(Posicion posicion)
+    {
+        posicion.ocupada = true;
     }
 }
