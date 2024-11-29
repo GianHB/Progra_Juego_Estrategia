@@ -9,10 +9,23 @@ public class Bala : MonoBehaviourPun
     private Rigidbody rb;
     [SerializeField] private float speed;
     private Vector3 direction;
+    [SerializeField] private Material BalaJugador;
+    [SerializeField] private Material BalaOponente;
+    private MeshRenderer meshRenderer;
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        meshRenderer = GetComponent<MeshRenderer>();
+        if (photonView.IsMine)
+        {
+            meshRenderer.material = BalaJugador;
+        }  
+        else
+        {
+            meshRenderer.material = BalaOponente;
+        }
     }
 
     public void SetUp(Vector3 direction, int ownerId)
