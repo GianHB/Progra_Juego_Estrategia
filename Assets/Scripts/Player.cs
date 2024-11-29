@@ -37,10 +37,12 @@ public class Player : MonoBehaviourPun
             photonView.RPC("SetHealth", RpcTarget.AllBuffered, VidaMax);
             localInstance = gameObject;
             meshRenderer.material = Jugador;
+            BarradeVida.color = Color.green;
         }
         else
         {
             meshRenderer.material = Oponente;
+            BarradeVida.color = Color.red;
         }
         DontDestroyOnLoad(gameObject);
         rb = GetComponent<Rigidbody>();
