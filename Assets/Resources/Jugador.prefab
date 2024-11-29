@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4058254583398479606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7334812624836900499}
+  m_Layer: 0
+  m_Name: Punto de Disparo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7334812624836900499
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4058254583398479606}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4453776143107432274}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6195891753458937920
 GameObject:
   m_ObjectHideFlags: 0
@@ -38,6 +69,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5894382839039548378}
+  - {fileID: 7334812624836900499}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2529561672475462115
@@ -126,9 +158,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNameText: {fileID: 4747672572749438561}
-  velocidad: 8
-  Celeste: {fileID: 2100000, guid: 8bf370d51723a5a42b62e11f8ab6ce69, type: 2}
-  Rojo: {fileID: 2100000, guid: f7412fe8091a48e468211147dc9d1494, type: 2}
+  Velocidad: 8
+  BalaPrefab: {fileID: 3724889701875030858, guid: b2ccf2a6be20cc3439d2c5b36905e75f, type: 3}
+  PuntodeDisparo: {fileID: 7334812624836900499}
 --- !u!114 &-142073128118757612
 MonoBehaviour:
   m_ObjectHideFlags: 0
