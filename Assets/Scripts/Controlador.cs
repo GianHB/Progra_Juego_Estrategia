@@ -7,49 +7,45 @@ public class Controlador : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject prefabJugador;
 
-    [SerializeField] private List<Posicion> posiciones;
+    [SerializeField] private List<Transform> posiciones;
 
-    [System.Serializable]
-    public class Posicion
-    {
-        public Transform posicion;
-        public bool ocupada;
-    }
 
     private void Start()
     {
-            Posicion posicion = BuscarPosition();
+            Transform posicion = BuscarPosition();
         if (PhotonNetwork.IsConnectedAndReady && Player.LocalInstance == null)
         {
 
             if (posicion != null)
             {
-                PhotonNetwork.Instantiate(prefabJugador.name, posicion.posicion.position, Quaternion.identity);
+                PhotonNetwork.Instantiate(prefabJugador.name, posicion.position, Quaternion.identity);
             }
 
         }
     }
     public override void OnJoinedRoom()
     {
-            Posicion posicion = BuscarPosition();
+            Transform posicion = BuscarPosition();
         if (Player.LocalInstance == null)
         {
 
             if (posicion != null)
             {
-                PhotonNetwork.Instantiate(prefabJugador.name, posicion.posicion.position, Quaternion.identity);
+                PhotonNetwork.Instantiate(prefabJugador.name, posicion.position, Quaternion.identity);
             }
         }
     }
 
-    private Posicion BuscarPosition()
+    private Transform BuscarPosition()
     {
-        foreach (Posicion posicion in posiciones)
+        foreach (Transform posicion in posiciones)
         {
-            if (posicion.ocupada) continue;
+            bool ocupada = Physics.CheckSphere(posicion.position, 0.25f);
 
-            posicion.ocupada = true;
-            return posicion;
+            if (!ocupada)
+            {
+                return posicion;
+            }
         }
 
         return null;
