@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviourPun
 {
@@ -17,6 +18,10 @@ public class Player : MonoBehaviourPun
 
     [SerializeField] private GameObject BalaPrefab;
     [SerializeField] private Transform PuntodeDisparo;
+    [SerializeField] private int VidaMax;
+    [SerializeField] private int Vida;
+    [SerializeField] private Image BarradeVida;
+
 
     private void Awake()
     {
@@ -28,6 +33,7 @@ public class Player : MonoBehaviourPun
         }
         DontDestroyOnLoad(gameObject);
         rb = GetComponent<Rigidbody>();
+        Vida = VidaMax;
     }
 
 
@@ -37,7 +43,6 @@ public class Player : MonoBehaviourPun
         playerNameText.text = playerName;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!photonView.IsMine || !PhotonNetwork.IsConnected)
@@ -73,5 +78,40 @@ public class Player : MonoBehaviourPun
             }
         }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Bala bala))
+        {
+            if (photonView.ViewID != bala.ownerId)
+            {
+                if (photonView.IsMine)
+                {
+                    RecibirDañoBala(1);
+                }
+            }
+        }
+
+        PhotonNetwork.Destroy(bala.gameObject);
+    }
+
+    public void RecibirDañoBala(int daño)
+    {
+        photonView.RPC("PerderVida", RpcTarget.AllBuffered, daño);
+    }
+
+    [PunRPC]
+    private void PerderVida(int vidaPerdida)
+    {
+        Vida = Vida - vidaPerdida;
+
+        if (Vida <= 0f)
+        {
+            Vida = VidaMax;
+            transform.position = new Vector3(0f, 1f, 0f);
+        }
+
+        BarradeVida.fillAmount = (float)Vida / VidaMax;
     }
 }
