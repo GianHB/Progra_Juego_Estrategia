@@ -34,4 +34,19 @@ public class Bala : MonoBehaviourPun
     {
         PhotonNetwork.Destroy(gameObject);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!photonView.IsMine) return;
+
+        if (other.TryGetComponent(out Player player))
+        {
+            if (ownerId != player.ObtenerID())
+            {
+                player.RecibirDañoBala(1);
+                PhotonNetwork.Destroy(gameObject);
+            }
+        }
+
+    }
 }

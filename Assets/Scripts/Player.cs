@@ -80,22 +80,6 @@ public class Player : MonoBehaviourPun
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out Bala bala))
-        {
-            if (photonView.ViewID != bala.ownerId)
-            {
-                if (photonView.IsMine)
-                {
-                    RecibirDañoBala(1);
-                    bala.DestruirBala();
-                }
-            }
-        }
-
-    }
-
     public void RecibirDañoBala(int daño)
     {
         photonView.RPC("PerderVida", RpcTarget.AllBuffered, daño);
@@ -113,5 +97,10 @@ public class Player : MonoBehaviourPun
         }
 
         BarradeVida.fillAmount = (float)Vida / VidaMax;
+    }
+
+    public int ObtenerID()
+    {
+        return photonView.ViewID;
     }
 }
