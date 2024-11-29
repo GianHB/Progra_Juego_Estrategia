@@ -89,11 +89,11 @@ public class Player : MonoBehaviourPun
                 if (photonView.IsMine)
                 {
                     RecibirDañoBala(1);
+                    PhotonNetwork.Destroy(bala.gameObject);
                 }
             }
         }
 
-        PhotonNetwork.Destroy(bala.gameObject);
     }
 
     public void RecibirDañoBala(int daño)
