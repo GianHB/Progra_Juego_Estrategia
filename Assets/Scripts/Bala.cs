@@ -25,7 +25,7 @@ public class Bala : MonoBehaviourPun
         this.direction = direction;
         this.ownerId = ownerId;
 
-        photonView.RPC("SetMaterial", RpcTarget.AllBuffered, photonView.IsMine);
+        photonView.RPC("SetMaterial", RpcTarget.All, photonView.IsMine);
     }
 
     void Update()
