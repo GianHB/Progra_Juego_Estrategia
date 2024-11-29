@@ -29,6 +29,7 @@ public class Player : MonoBehaviourPun
         {
             playerNameText.text = Gamedata.nombreJugador;
             photonView.RPC("SetName", RpcTarget.AllBuffered, Gamedata.nombreJugador);
+            photonView.RPC("SetHealth", RpcTarget.AllBuffered, VidaMax);
             localInstance = gameObject;
         }
         DontDestroyOnLoad(gameObject);
@@ -92,7 +93,7 @@ public class Player : MonoBehaviourPun
 
         if (Vida <= 0f)
         {
-            Vida = VidaMax;
+            SetHealth(VidaMax);
             transform.position = new Vector3(0f, 1f, 0f);
         }
 
@@ -102,5 +103,10 @@ public class Player : MonoBehaviourPun
     public int ObtenerID()
     {
         return photonView.ViewID;
+    }
+
+    private void SetHealth(int vida )
+    {
+        Vida = vida;
     }
 }
