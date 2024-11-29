@@ -21,6 +21,8 @@ public class Player : MonoBehaviourPun
 
     private void Awake()
     {
+        meshRenderer = GetComponent<MeshRenderer>();
+
         if (photonView.IsMine)
         {
             playerNameText.text = Gamedata.nombreJugador;
